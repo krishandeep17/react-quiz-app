@@ -1,6 +1,13 @@
 import { useEffect, useReducer } from "react";
 
-import { Error, Header, Loader, Main, StartScreen } from "./components";
+import {
+  Error,
+  Header,
+  Loader,
+  Main,
+  Questions,
+  StartScreen,
+} from "./components";
 
 const initialState = {
   questions: [],
@@ -19,6 +26,12 @@ const reducer = (state, action) => {
     }
     case "failed": {
       return { ...state, status: "error" };
+    }
+    case "start": {
+      return { ...state, status: "active" };
+    }
+    case "next_answer": {
+      return { ...state, answer: action.payload };
     }
 
     default:
@@ -56,6 +69,14 @@ const App = () => {
         {status === "error" && <Error />}
         {status === "ready" && (
           <StartScreen numQuestions={numQuestions} dispatch={dispatch} />
+        )}
+
+        {status === "active" && (
+          <Questions
+            questions={questions[index]}
+            answer={answer}
+            dispatch={dispatch}
+          />
         )}
       </Main>
     </div>
