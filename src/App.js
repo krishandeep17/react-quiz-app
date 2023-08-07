@@ -1,6 +1,6 @@
 import { useEffect, useReducer } from "react";
 
-import { Header } from "./components";
+import { Header, Main } from "./components";
 
 const initialState = {
   questions: [],
@@ -49,6 +49,7 @@ const App = () => {
   return (
     <div className="app">
       <Header />
+      <Main></Main>
     </div>
   );
 };
