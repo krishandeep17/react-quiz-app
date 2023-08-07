@@ -1,4 +1,5 @@
 import Error from "./Error";
+import FinishScreen from "./FinishScreen";
 import Header from "./Header";
 import Loader from "./Loader";
 import Main from "./Main";
@@ -9,6 +10,7 @@ import StartScreen from "./StartScreen";
 
 export {
   Error,
+  FinishScreen,
   Header,
   Loader,
   Main,

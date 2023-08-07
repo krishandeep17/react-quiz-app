@@ -2,6 +2,7 @@ import { useEffect, useReducer } from "react";
 
 import {
   Error,
+  FinishScreen,
   Header,
   Loader,
   Main,
@@ -46,6 +47,22 @@ const reducer = (state, action) => {
     }
     case "next_question": {
       return { ...state, answer: null, index: state.index + 1 };
+    }
+    case "finish": {
+      return {
+        ...state,
+        status: "finished",
+        highScore:
+          state.points > state.highScore ? state.points : state.highScore,
+      };
+    }
+    case "restart": {
+      return {
+        ...initialState,
+        questions: state.questions,
+        status: "ready",
+        highScore: state.highScore,
+      };
     }
 
     default:
@@ -100,8 +117,23 @@ const App = () => {
               answer={answer}
               dispatch={dispatch}
             />
-            {answer !== null && <NextButton dispatch={dispatch} />}
+            {answer !== null && (
+              <NextButton
+                dispatch={dispatch}
+                index={index}
+                numQuestions={numQuestions}
+              />
+            )}
           </>
+        )}
+
+        {status === "finished" && (
+          <FinishScreen
+            points={points}
+            maxPoints={maxPoints}
+            highScore={highScore}
+            dispatch={dispatch}
+          />
         )}
       </Main>
     </div>
