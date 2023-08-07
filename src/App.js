@@ -6,6 +6,7 @@ import {
   Loader,
   Main,
   NextButton,
+  Progress,
   Questions,
   StartScreen,
 } from "./components";
@@ -66,6 +67,7 @@ const App = () => {
   } = state;
 
   const numQuestions = questions.length;
+  const maxPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
 
   useEffect(() => {
     fetch("http://localhost:5000/questions")
@@ -86,6 +88,13 @@ const App = () => {
 
         {status === "active" && (
           <>
+            <Progress
+              index={index}
+              numQuestions={numQuestions}
+              points={points}
+              maxPoints={maxPoints}
+              answer={answer}
+            />
             <Questions
               questions={questions[index]}
               answer={answer}
