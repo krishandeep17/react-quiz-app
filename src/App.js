@@ -5,6 +5,7 @@ import {
   Header,
   Loader,
   Main,
+  NextButton,
   Questions,
   StartScreen,
 } from "./components";
@@ -30,8 +31,20 @@ const reducer = (state, action) => {
     case "start": {
       return { ...state, status: "active" };
     }
-    case "next_answer": {
-      return { ...state, answer: action.payload };
+    case "new_answer": {
+      const question = state.questions[state.index];
+
+      return {
+        ...state,
+        answer: action.payload,
+        points:
+          action.payload === question.correctOption
+            ? state.points + question.points
+            : state.points,
+      };
+    }
+    case "next_question": {
+      return { ...state, answer: null, index: state.index + 1 };
     }
 
     default:
@@ -72,11 +85,14 @@ const App = () => {
         )}
 
         {status === "active" && (
-          <Questions
-            questions={questions[index]}
-            answer={answer}
-            dispatch={dispatch}
-          />
+          <>
+            <Questions
+              questions={questions[index]}
+              answer={answer}
+              dispatch={dispatch}
+            />
+            {answer !== null && <NextButton dispatch={dispatch} />}
+          </>
         )}
       </Main>
     </div>

@@ -18,7 +18,7 @@ const Questions = ({ questions, answer, dispatch }) => {
             key={option}
             className={`btn btn-option ${correctClass(i)} ${answerClass(i)}`}
             disabled={hasAnswer}
-            onClick={() => dispatch({ type: "next_answer", payload: i })}
+            onClick={() => dispatch({ type: "new_answer", payload: i })}
           >
             {option}
           </button>
