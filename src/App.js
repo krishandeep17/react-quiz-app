@@ -1,5 +1,7 @@
 import { useEffect, useReducer } from "react";
 
+import { Header } from "./components";
+
 const initialState = {
   questions: [],
   status: "loading", // 'loading', 'error', 'ready', 'active', 'finished'
@@ -44,7 +46,11 @@ const App = () => {
       .catch((err) => dispatch({ type: "failed" }));
   }, []);
 
-  return <div className="app">React Quiz App</div>;
+  return (
+    <div className="app">
+      <Header />
+    </div>
+  );
 };
 
 export default App;
