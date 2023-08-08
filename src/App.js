@@ -3,6 +3,7 @@ import { useEffect, useReducer } from "react";
 import {
   Error,
   FinishScreen,
+  Footer,
   Header,
   Loader,
   Main,
@@ -117,13 +118,15 @@ const App = () => {
               answer={answer}
               dispatch={dispatch}
             />
-            {answer !== null && (
-              <NextButton
-                dispatch={dispatch}
-                index={index}
-                numQuestions={numQuestions}
-              />
-            )}
+            <Footer>
+              {answer !== null && (
+                <NextButton
+                  dispatch={dispatch}
+                  index={index}
+                  numQuestions={numQuestions}
+                />
+              )}
+            </Footer>
           </>
         )}
 
