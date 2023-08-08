@@ -11,7 +11,10 @@ import {
   Progress,
   Questions,
   StartScreen,
+  Timer,
 } from "./components";
+
+const SECS_PER_QUESTION = 30;
 
 const initialState = {
   questions: [],
@@ -32,7 +35,11 @@ const reducer = (state, action) => {
       return { ...state, status: "error" };
     }
     case "start": {
-      return { ...state, status: "active" };
+      return {
+        ...state,
+        status: "active",
+        secondsRemaining: state.questions.length * SECS_PER_QUESTION,
+      };
     }
     case "new_answer": {
       const question = state.questions[state.index];
@@ -55,6 +62,13 @@ const reducer = (state, action) => {
         status: "finished",
         highScore:
           state.points > state.highScore ? state.points : state.highScore,
+      };
+    }
+    case "tick": {
+      return {
+        ...state,
+        secondsRemaining: state.secondsRemaining - 1,
+        status: state.secondsRemaining === 0 ? "finished" : state.status,
       };
     }
     case "restart": {
@@ -126,6 +140,8 @@ const App = () => {
                   numQuestions={numQuestions}
                 />
               )}
+
+              <Timer dispatch={dispatch} secondsRemaining={secondsRemaining} />
             </Footer>
           </>
         )}
