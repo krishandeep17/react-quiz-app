@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Codystar&display=swap");
-
 :root {
   --color-darkest: #343a40;
   --color-dark: #495057;
@@ -38,163 +36,40 @@ body {
 }
 
 .main {
-  width: 50rem;
+  max-width: 50rem;
+  width: 100%;
 }
 
-.app-header {
+/* HEADER */
+
+.header {
   margin-bottom: 4rem;
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 3.2rem;
 }
 
-.error {
-  text-align: center;
-  font-size: 1.6rem;
-  font-weight: 500;
-  padding: 2rem;
-  background-color: #495057;
-  border-radius: 100px;
-}
-
-img {
-  width: 14rem;
+.header img {
+  width: 12.8rem;
   max-width: 100%;
+  animation: spin infinite 20s linear;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 h1 {
-  font-family: "Codystar";
+  font-family: "Codystar", cursive;
   font-size: 5.6rem;
 }
 
-h2 {
-  font-size: 3.6rem;
-  margin-bottom: 2rem;
-}
-
-h3 {
-  font-size: 2.4rem;
-  font-weight: 600;
-  margin-bottom: 4rem;
-}
-
-h4 {
-  font-size: 2.2rem;
-  font-weight: 600;
-  margin-bottom: 2.4rem;
-}
-
-.start {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.progress {
-  margin-bottom: 4rem;
-  display: grid;
-  justify-content: space-between;
-  gap: 1.2rem;
-  grid-template-columns: auto auto;
-  font-size: 1.8rem;
-  color: var(--color-medium);
-}
-
-progress {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 12px;
-  grid-column: 1 / -1;
-}
-
-::-webkit-progress-bar {
-  background-color: var(--color-medium);
-  border-radius: 100px;
-}
-::-webkit-progress-value {
-  background-color: var(--color-theme);
-  border-radius: 100px;
-}
-
-.btn {
-  display: block;
-  font-family: inherit;
-  color: inherit;
-  font-size: 2rem;
-  border: 2px solid var(--color-dark);
-  background-color: var(--color-dark);
-  padding: 1.2rem 2.4rem;
-  cursor: pointer;
-  border-radius: 100px;
-  transition: 0.3s;
-  user-select: none;
-}
-
-.btn:not([disabled]):hover {
-  background-color: var(--color-darkest);
-}
-
-.btn-option:not([disabled]):hover {
-  transform: translateX(1.2rem);
-}
-
-.btn[disabled]:hover {
-  cursor: not-allowed;
-}
-
-.btn-ui {
-  float: right;
-}
-
-.options {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-bottom: 3.2rem;
-}
-
-.btn-option {
-  width: 100%;
-  text-align: left;
-}
-
-.btn-option.correct {
-  background-color: var(--color-theme);
-  border: 2px solid var(--color-theme);
-  color: var(--color-light);
-}
-.btn-option.wrong {
-  background-color: var(--color-accent);
-  border: 2px solid var(--color-accent);
-  color: var(--color-darkest);
-}
-
-.answer {
-  transform: translateX(2rem);
-}
-
-.result {
-  background-color: var(--color-theme);
-  color: var(--color-light);
-  border-radius: 100px;
-  text-align: center;
-  padding: 2rem 0;
-  font-size: 2rem;
-  font-weight: 500;
-  margin-bottom: 1.6rem;
-}
-
-.result span {
-  font-size: 2.2rem;
-  margin-right: 4px;
-}
-
-.high-score {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 4.8rem;
-}
+/* LOADER */
 
 .loader-container {
   display: flex;
@@ -202,21 +77,10 @@ progress {
   align-items: center;
   margin-top: 4rem;
   gap: 1.6rem;
-
   color: var(--color-medium);
-  font-size: 1.4rem;
+  font-size: 14px;
 }
 
-.timer {
-  float: left;
-  font-size: 1.8rem;
-  color: var(--color-medium);
-  border: 2px solid var(--color-dark);
-  padding: 1.35rem 2.8rem;
-  border-radius: 100px;
-}
-
-/* CREDIT: https://dev.to/afif/i-made-100-css-loaders-for-your-next-project-4eje */
 .loader {
   width: 50px;
   height: 24px;
@@ -244,21 +108,167 @@ progress {
   }
 }
 
-/* ********** */
-/* First counter example */
-.counter {
+/* ERROR */
+
+.error {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  padding: 2rem;
+  background-color: var(--color-dark);
+  border-radius: 100px;
+}
+
+/* START SCREEN */
+
+.start {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  font-size: 2rem;
-  font-weight: bold;
-  margin: 6rem;
 }
 
-.counter * {
-  font-size: inherit;
-  padding: 0.8rem;
+.start h2 {
+  font-size: 3.6rem;
+  margin-bottom: 2rem;
+}
+
+.start h3 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin-bottom: 4rem;
+}
+
+/* BUTTON */
+
+.btn {
+  display: block;
+  font-family: inherit;
+  color: var(--color-light);
+  font-size: 2rem;
+  border: 2px solid var(--color-dark);
+  background-color: var(--color-dark);
+  padding: 1.2rem 2.4rem;
+  cursor: pointer;
+  border-radius: 100px;
+  transition: 0.3s;
+  user-select: none;
+}
+
+.btn:not([disabled]):hover {
+  background-color: var(--color-darkest);
+}
+
+.btn[disabled]:hover {
+  cursor: not-allowed;
+}
+
+.btn-right {
+  float: right;
+}
+
+/* PROGRESS */
+
+.progress {
+  margin-bottom: 4rem;
+  display: grid;
+  justify-content: space-between;
+  gap: 1.2rem;
+  grid-template-columns: auto auto;
+  font-size: 1.8rem;
+  color: var(--color-medium);
+}
+
+progress {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.2rem;
+  grid-column: 1 / -1;
+}
+
+::-webkit-progress-bar {
+  background-color: var(--color-medium);
+  border-radius: 100px;
+}
+
+::-webkit-progress-value {
+  background-color: var(--color-theme);
+  border-radius: 100px;
+}
+
+/* QUESTIONS */
+
+h4 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 2.4rem;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 3.2rem;
+}
+
+.btn-option {
+  width: 100%;
+  text-align: left;
+}
+
+.btn-option:not([disabled]):hover {
+  transform: translateX(1.2rem);
+}
+
+.options .correct {
+  background-color: var(--color-theme);
+  border: 2px solid var(--color-theme);
+  color: var(--color-light);
+}
+
+.options .wrong {
+  background-color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  color: var(--color-darkest);
+}
+
+.options .answer {
+  transform: translateX(2rem);
+}
+
+/* TIMER */
+
+.timer {
+  float: left;
+  font-size: 1.8rem;
+  color: var(--color-medium);
+  border: 2px solid var(--color-dark);
+  padding: 1.35rem 2.8rem;
+  border-radius: 100px;
+}
+
+/* FINISH SCREEN */
+
+.result {
+  background-color: var(--color-theme);
+  color: var(--color-light);
+  border-radius: 100px;
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 1.6rem;
+}
+
+.result span {
+  font-size: 2.2rem;
+  margin-right: 4px;
+}
+
+.high-score {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 4.8rem;
 }
 
 /* 
