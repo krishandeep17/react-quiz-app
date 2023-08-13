@@ -16,7 +16,7 @@ const FinishScreen = ({ points, maxPoints, highScore, dispatch }) => {
       </p>
       <p className="high-score">(High Score: {highScore} points)</p>
       <button
-        className="btn btn-ui"
+        className="btn btn-right"
         onClick={() => dispatch({ type: "restart" })}
       >
         Restart Quiz
