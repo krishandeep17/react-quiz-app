@@ -125,11 +125,12 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 }
 
 .start h2 {
   font-size: 3.6rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.4rem;
 }
 
 .start h3 {
@@ -233,7 +234,7 @@ h4 {
 }
 
 .options .answer {
-  transform: translateX(2rem);
+  transform: translateX(1.8rem);
 }
 
 /* TIMER */
@@ -262,7 +263,6 @@ h4 {
 
 .result span {
   font-size: 2.2rem;
-  margin-right: 4px;
 }
 
 .high-score {
@@ -271,10 +271,37 @@ h4 {
   margin-bottom: 4.8rem;
 }
 
-/* 
-- Font sizes (px)
-10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+/* RESPONSIVE QUERIES */
 
-- Spacing system (px)
-2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
-*/
+@media (max-width: 38em) {
+  html {
+    font-size: 56.25%;
+  }
+  .header img {
+    width: 9.8rem;
+  }
+  h1 {
+    font-size: 4.4rem;
+  }
+}
+
+@media (max-width: 31em) {
+  html {
+    font-size: 50%;
+  }
+  .header {
+    gap: 2.4rem;
+  }
+  .header img {
+    width: 8.6rem;
+  }
+  h1 {
+    font-size: 3.6rem;
+  }
+  .start h2 {
+    font-size: 3rem;
+  }
+  .start h3 {
+    font-size: 2rem;
+  }
+}
