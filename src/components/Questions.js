@@ -4,9 +4,9 @@ const Questions = ({ questions, answer, dispatch }) => {
   const hasAnswer = answer !== null;
 
   const correctClass = (i) =>
-    hasAnswer ? (i === correctOption ? "correct" : "wrong") : "";
+    hasAnswer && (i === correctOption ? "correct" : "wrong");
 
-  const answerClass = (i) => (i === answer ? "answer" : "");
+  const answerClass = (i) => i === answer && "answer";
 
   return (
     <div>

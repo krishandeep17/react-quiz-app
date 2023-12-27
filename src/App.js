@@ -15,6 +15,10 @@ import {
 } from "./components";
 
 const SECS_PER_QUESTION = 30;
+const URL =
+  process.env.REACT_APP_ENV === "production"
+    ? process.env.REACT_APP_API_URL_PROD
+    : process.env.REACT_APP_API_URL_DEV;
 
 const initialState = {
   questions: [],
@@ -101,20 +105,12 @@ const App = () => {
   const numQuestions = questions.length;
   const maxPoints = questions.reduce((acc, cur) => acc + cur.points, 0);
 
-  let url;
-
-  if (process.env.REACT_APP_ENV === "production") {
-    url = "https://krishandeep17.github.io/data/react-quiz.json";
-  } else {
-    url = "http://localhost:5000/questions";
-  }
-
   useEffect(() => {
-    fetch(url)
+    fetch(URL)
       .then((res) => res.json())
       .then((data) => dispatch({ type: "received_data", payload: data }))
       .catch((err) => dispatch({ type: "failed" }));
-  }, [url]);
+  }, []);
 
   return (
     <div className="app">
@@ -141,7 +137,7 @@ const App = () => {
               dispatch={dispatch}
             />
             <Footer>
-              {answer !== null && (
+              {answer && (
                 <NextButton
                   dispatch={dispatch}
                   index={index}
