@@ -26,7 +26,7 @@ const initialState = {
   index: 0,
   answer: null,
   points: 0,
-  highScore: 0,
+  highScore: Number(localStorage.getItem("highScore")),
   secondsRemaining: null,
 };
 
@@ -112,6 +112,10 @@ const App = () => {
       .catch((err) => dispatch({ type: "failed" }));
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("highScore", highScore);
+  }, [highScore]);
+
   return (
     <div className="app">
       <Header />
@@ -137,7 +141,7 @@ const App = () => {
               dispatch={dispatch}
             />
             <Footer>
-              {answer && (
+              {answer !== null && (
                 <NextButton
                   dispatch={dispatch}
                   index={index}
