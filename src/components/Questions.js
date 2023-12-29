@@ -1,5 +1,9 @@
-const Questions = ({ questions, answer, dispatch }) => {
-  const { question, options, correctOption } = questions;
+import { useQuizContext } from "../contexts/QuizContext/useQuizContext";
+
+const Questions = () => {
+  const { questions, index, answer, dispatch } = useQuizContext();
+
+  const { question, options, correctOption } = questions[index];
 
   const hasAnswer = answer !== null;
 
